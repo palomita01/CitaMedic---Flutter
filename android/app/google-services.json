@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "240395230588",
+    "firebase_url": "https://citamedic-e2f95.firebaseio.com",
+    "project_id": "citamedic-e2f95",
+    "storage_bucket": "citamedic-e2f95.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240395230588:android:3deb00aa8c3d96c01658f9",
+        "android_client_info": {
+          "package_name": "com.example.proyecto_citamedic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "240395230588-2hmt440vq4nnj8r8rc3404uuplc39u11.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.proyecto_citamedic",
+            "certificate_hash": "f8b26018e51c1b6bd85d781f6d70ca68d630a493"
+          }
+        },
+        {
+          "client_id": "240395230588-0968qoeesl4sob2d4kfpl64vqv35060f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvdpaViy567vG_yi0BIfGnLaLS4YwZqzg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "240395230588-0968qoeesl4sob2d4kfpl64vqv35060f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

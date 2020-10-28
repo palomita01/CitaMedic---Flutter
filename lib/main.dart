@@ -1,51 +1,54 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'model/Producto1.dart';
+import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:proyecto_citamedic/src/bloc/authentication_bloc/authentication_event.dart';
+import 'package:proyecto_citamedic/src/bloc/authentication_bloc/authentication_state.dart';
+import 'package:proyecto_citamedic/src/bloc/simple_bloc_delegate.dart';
+import 'package:proyecto_citamedic/src/repository/user_repository.dart';
+import 'package:proyecto_citamedic/src/bloc/authentication_bloc/authentication_bloc.dart';
+import 'package:proyecto_citamedic/src/ui/home_screen.dart';
+import 'package:proyecto_citamedic/src/ui/splash_screen.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  BlocSupervisor.delegate = SimpleBlocDelegate();
 
-class MyApp extends StatelessWidget {
-  final TextEditingController _controllerUsuario = TextEditingController();
-  final TextEditingController _controllerContrasena = TextEditingController();
+  final UserRepository userRepository = UserRepository();
+  runApp(BlocProvider(
+    create: (context) =>
+        AuthenticationBloc(userRepository: userRepository)..add(AppStarted()),
+    child: App(userRepository: userRepository),
+  ));
+}
+
+class App extends StatelessWidget {
+  final UserRepository _userRepository;
+
+  App({Key key, @required UserRepository userRepository})
+      : assert(userRepository != null),
+        _userRepository = userRepository,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          appBar: AppBar(
-            title: Text("Iniciando Sesión"),
-          ),
-          body: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: TextField(
-                      controller: _controllerUsuario,
-                      decoration: InputDecoration(labelText: 'Usuario'),
-                      keyboardType: TextInputType.text),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: TextField(
-                      controller: _controllerContrasena,
-                      decoration: InputDecoration(labelText: 'Contraseña'),
-                      keyboardType: TextInputType.text),
-                ),
-                RaisedButton(
-                    child: Text('Iniciar Sesión'),
-                    onPressed: () {
-                      final String user = _controllerUsuario.text;
-                      final int pass = int.tryParse(_controllerContrasena.text);
-
-                      final Producto1 productoNuevo = Producto1(user, pass);
-
-                      print(productoNuevo);
-                    })
-              ],
-            ),
-          ),
-        ));
+      home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        builder: (context, state) {
+          if (state is Uninitialized) {
+            return SplashScreen();
+          }
+          if (state is Authenticated) {
+            return HomeScreen();
+          }
+          if (state is Unauthenticated) {
+            return Container(
+              color: Colors.orange,
+            ); // <-- aca es donde va el login
+          }
+          return Container();
+        },
+      ),
+    );
   }
 }
