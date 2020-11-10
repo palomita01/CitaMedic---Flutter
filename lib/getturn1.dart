@@ -20,32 +20,32 @@ class MyApp extends StatelessWidget {
             title: Text("Solicitá tu turno"),
           ),
           body: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(5.0),
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.all(256.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: TextField(
                       controller: _controllerMotivo,
                       decoration: InputDecoration(labelText: 'Motivo'),
                       keyboardType: TextInputType.text),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: TextField(
                       controller: _controllerDia,
                       decoration: InputDecoration(labelText: 'Día'),
                       keyboardType: TextInputType.text),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: TextField(
                       controller: _controllerHora,
                       decoration: InputDecoration(labelText: 'Hora'),
                       keyboardType: TextInputType.text),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(256.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: TextField(
                       controller: _controllerComent,
                       decoration: InputDecoration(labelText: 'Comentarios'),

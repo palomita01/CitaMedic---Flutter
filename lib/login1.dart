@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'model/Producto1.dart';
-import 'package:proyecto_citamedic/pages/powerPage.dart';
-import 'package:proyecto_citamedic/pages/userPage.dart';
 import 'package:http/http.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:flutter_svg/flutter_svg.dart';

@@ -1,53 +1,104 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:proyecto_citamedic/src/bloc/authentication_bloc/authentication_event.dart';
-import 'package:proyecto_citamedic/src/bloc/authentication_bloc/authentication_state.dart';
-import 'package:proyecto_citamedic/src/bloc/simple_bloc_delegate.dart';
-import 'package:proyecto_citamedic/src/repository/user_repository.dart';
-import 'package:proyecto_citamedic/src/bloc/authentication_bloc/authentication_bloc.dart';
-import 'package:proyecto_citamedic/src/ui/home_screen.dart';
-import 'package:proyecto_citamedic/src/ui/splash_screen.dart';
+import 'package:proyecto_citamedic/constants.dart';
+import 'package:proyecto_citamedic/signin_screen.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  BlocSupervisor.delegate = SimpleBlocDelegate();
-
-  final UserRepository userRepository = UserRepository();
-  runApp(BlocProvider(
-    create: (context) =>
-        AuthenticationBloc(userRepository: userRepository)..add(AppStarted()),
-    child: App(userRepository: userRepository),
-  ));
+  runApp(MyApp());
 }
 
-class App extends StatelessWidget {
-  final UserRepository _userRepository;
-
-  App({Key key, @required UserRepository userRepository})
-      : assert(userRepository != null),
-        _userRepository = userRepository,
-        super(key: key);
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-        builder: (context, state) {
-          if (state is Uninitialized) {
-            return SplashScreen();
-          }
-          if (state is Authenticated) {
-            return HomeScreen();
-          }
-          if (state is Unauthenticated) {
-            return Container(
-              color: Colors.orange,
-            ); // <-- aca es donde va el login
-          }
-          return Container();
-        },
+      title: 'Auth Screen 1',
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: kPrimaryColor,
+        scaffoldBackgroundColor: kBackgroundColor,
+        textTheme: TextTheme(
+          display1: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+          button: TextStyle(color: kPrimaryColor),
+          headline:
+              TextStyle(color: Colors.white, fontWeight: FontWeight.normal),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.blue.withOpacity(.4),
+            ),
+          ),
+        ),
+      ),
+      home: WelcomeScreen(),
+    );
+  }
+}
+
+class WelcomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("images/background1_app.jpg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                          text: "Realiza tu consulta aquí",
+                          style: Theme.of(context).textTheme.display1),
+                    ],
+                  ),
+                ),
+                FittedBox(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return SignInScreen();
+                        },
+                      ));
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 150),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 35, vertical: 16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: kPrimaryColor,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Text(
+                            "EMPEZA AHORA",
+                            style: Theme.of(context).textTheme.button.copyWith(
+                                  color: Colors.white,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

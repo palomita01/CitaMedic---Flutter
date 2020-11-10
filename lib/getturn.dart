@@ -21,11 +21,11 @@ class MyApp extends StatelessWidget {
             title: Text("Solicitá tu turno"),
           ),
           body: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(50.0),
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(2.0),
                   child: TextField(
                       controller: _controllerNyA,
                       decoration:
@@ -33,21 +33,21 @@ class MyApp extends StatelessWidget {
                       keyboardType: TextInputType.text),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(2.0),
                   child: TextField(
                       controller: _controllerDNI,
                       decoration: InputDecoration(labelText: 'DNI'),
                       keyboardType: TextInputType.text),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(2.0),
                   child: TextField(
                       controller: _controllerProv,
                       decoration: InputDecoration(labelText: 'Provincia'),
                       keyboardType: TextInputType.text),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(2.0),
                   child: TextField(
                       controller: _controllerDeleg,
                       decoration: InputDecoration(labelText: 'Delegación'),
