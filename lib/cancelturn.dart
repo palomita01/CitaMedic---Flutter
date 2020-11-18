@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'model/Producto3.dart';
-import 'login1.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,6 +13,7 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(
             title: Text("Cancele su turno"),
           ),
+          //formulario
           body: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
                       decoration: InputDecoration(labelText: 'Nro turno'),
                       keyboardType: TextInputType.text),
                 ),
+                // me devuelve los datos que pido luego de presionar el boton
                 RaisedButton(
                     child: Text('Finalizar'),
                     onPressed: () {

@@ -7,6 +7,7 @@ class SignInScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: <Widget>[
+          //defino el fondo de pantalla
           Expanded(
             flex: 3,
             child: Container(
@@ -19,6 +20,7 @@ class SignInScreen extends StatelessWidget {
               ),
             ),
           ),
+          //defino los textos en conjunto con su tamaño y alineación
           Expanded(
             flex: 3,
             child: Padding(
@@ -38,6 +40,7 @@ class SignInScreen extends StatelessWidget {
                       ),
                     ],
                   ),
+                  //agrego el icono con su tamaño y alineacion en conjunto con el formualario
                   Padding(
                     padding: const EdgeInsets.only(bottom: 25),
                     child: Row(
@@ -60,6 +63,7 @@ class SignInScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                  //agrego el icono con su tamaño y alineacion en conjunto con el formualario
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
@@ -79,6 +83,7 @@ class SignInScreen extends StatelessWidget {
                       )
                     ],
                   ),
+                  //en toda esta estructura incluyen los iconos y sus atributos
                   Spacer(),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),

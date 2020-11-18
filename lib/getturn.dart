@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'model/Producto.dart';
-import 'login1.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  //inicializo los datos
   final TextEditingController _controllerNyA = TextEditingController();
   final TextEditingController _controllerDNI = TextEditingController();
   final TextEditingController _controllerProv = TextEditingController();
@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
             padding: const EdgeInsets.all(50.0),
             child: Column(
               children: <Widget>[
+                // formularios y sus atributos
                 Padding(
                   padding: const EdgeInsets.all(2.0),
                   child: TextField(
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
                       decoration: InputDecoration(labelText: 'Teléfono'),
                       keyboardType: TextInputType.text),
                 ),
+                // me devuelve los datos que pido luego de presionar el boton
                 RaisedButton(
                     child: Text('Siguiente'),
                     onPressed: () {

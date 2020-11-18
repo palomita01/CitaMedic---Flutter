@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_citamedic/model/Producto2.dart';
 import 'model/Producto2.dart';
-import 'login1.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  //agrego los datos
   final TextEditingController _controllerMotivo = TextEditingController();
   final TextEditingController _controllerDia = TextEditingController();
   final TextEditingController _controllerHora = TextEditingController();
@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(
             title: Text("Solicitá tu turno"),
           ),
+          //definido los formularios en conjunto con sus atributos
           body: Padding(
             padding: const EdgeInsets.all(5.0),
             child: Column(
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
                 RaisedButton(
                     child: Text('Finalizar'),
                     onPressed: () {
+                      //llamo los datos
                       final String motivo = _controllerMotivo.text;
                       final String dia = _controllerDia.text;
                       final hora = int.tryParse(_controllerHora.text);

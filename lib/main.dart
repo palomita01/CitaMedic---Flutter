@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Auth Screen 1',
+      //defino los temas y colores a usar en conjunto con las fuentes
       theme: ThemeData(
         brightness: Brightness.light,
         primaryColor: kPrimaryColor,
@@ -34,12 +35,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
+//
 class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: <Widget>[
+          //defino el fondo de pantalla
           Expanded(
             flex: 1,
             child: Container(
@@ -51,6 +54,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
             ),
           ),
+          //defino el texto y el tamaño
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -65,6 +69,7 @@ class WelcomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+                //la ruta que sigue a la pantalla de login
                 FittedBox(
                   child: GestureDetector(
                     onTap: () {
@@ -74,6 +79,7 @@ class WelcomeScreen extends StatelessWidget {
                         },
                       ));
                     },
+                    //defino los atributos del boton y el texto dentro  de el
                     child: Container(
                       margin: EdgeInsets.only(bottom: 150),
                       padding:

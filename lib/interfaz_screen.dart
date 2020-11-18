@@ -17,6 +17,7 @@ class InterfazApp extends StatelessWidget {
         body: GridView.count(
           crossAxisCount: 2,
           children: <Widget>[
+            //botones y sus atributos
             Button(
               child: RaisedButton(
                 child: Text(
@@ -52,6 +53,7 @@ class InterfazApp extends StatelessWidget {
   }
 }
 
+//utilizo esta clase para definir atributos asi solo despues lo llamo
 class Button extends StatelessWidget {
   final Widget child;
   final String text;
