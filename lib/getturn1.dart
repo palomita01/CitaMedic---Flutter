@@ -26,28 +26,56 @@ class GetTurn1 extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: TextField(
                   controller: _controllerMotivo,
-                  decoration: InputDecoration(labelText: 'Motivo'),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    labelText: 'Motivo',
+                    // suffixIcon: Icon(Icons.accessibility),
+                    icon: Icon(Icons.add_comment),
+                  ),
                   keyboardType: TextInputType.text),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextField(
                   controller: _controllerDia,
-                  decoration: InputDecoration(labelText: 'Día'),
-                  keyboardType: TextInputType.text),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    labelText: 'Día',
+                    // suffixIcon: Icon(Icons.accessibility),
+                    icon: Icon(Icons.calendar_today),
+                  ),
+                  keyboardType: TextInputType.datetime),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextField(
                   controller: _controllerHora,
-                  decoration: InputDecoration(labelText: 'Hora'),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    labelText: 'Hora',
+                    // suffixIcon: Icon(Icons.accessibility),
+                    icon: Icon(Icons.access_time),
+                  ),
                   keyboardType: TextInputType.text),
             ),
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextField(
                   controller: _controllerComent,
-                  decoration: InputDecoration(labelText: 'Comentarios'),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    labelText: 'Comentarios',
+                    // suffixIcon: Icon(Icons.accessibility),
+                    icon: Icon(Icons.comment),
+                  ),
                   keyboardType: TextInputType.text),
             ),
             RaisedButton(

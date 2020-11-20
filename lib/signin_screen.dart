@@ -5,6 +5,9 @@ import 'interfaz_screen.dart';
 // import 'register.dart';
 
 class SignInScreen extends StatelessWidget {
+  String _email = "";
+  String _password = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,6 +71,9 @@ class SignInScreen extends StatelessWidget {
                             decoration: InputDecoration(
                               hintText: "Email",
                             ),
+                            onChanged: (valor) {
+                              _email = valor;
+                            },
                           ),
                         )
                       ],
@@ -89,6 +95,10 @@ class SignInScreen extends StatelessWidget {
                           decoration: InputDecoration(
                             hintText: "Contraseña",
                           ),
+                          obscureText: true,
+                          onChanged: (valor) {
+                            _password = valor;
+                          },
                         ),
                       )
                     ],
@@ -135,13 +145,30 @@ class SignInScreen extends StatelessWidget {
                           child: FloatingActionButton(
                             child: Icon(Icons.arrow_forward),
                             onPressed: () {
-                              print('Presionado');
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => InterfazApp(),
-                                ),
-                              );
+                              if (_email == "" || _password == "") {
+                                showDialog(
+                                  context: context,
+                                  child: AlertDialog(
+                                    title: Text("Complete los formularios"),
+                                    content: Text("Completa los formularios"),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                        onPressed: () =>
+                                            Navigator.of(context).pop(),
+                                        child: Text("Aceptar"),
+                                      )
+                                    ],
+                                  ),
+                                );
+                              } else {
+                                print('Presionado');
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => InterfazApp(),
+                                  ),
+                                );
+                              }
                             },
                           ),
                         )

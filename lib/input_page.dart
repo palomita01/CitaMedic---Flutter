@@ -9,7 +9,7 @@ class _InputPageState extends State<InputPage> {
   String _nombre;
   String _email = '';
   String _password = '';
-  String _fecha;
+  String _fecha = "";
 
   List<String> _provincias = [
     "Provincia",

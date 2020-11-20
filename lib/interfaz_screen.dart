@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'cancelturn.dart';
 import 'getturn.dart';
 import 'getturn1.dart';
 
@@ -51,7 +50,7 @@ class InterfazApp extends StatelessWidget {
                             })),
                           ),
                           FlatButton(
-                              child: Text("Para alguien mas"),
+                              child: Text("Para alguien más"),
                               onPressed: () =>
                                   Navigator.push(context, MaterialPageRoute(
                                     builder: (context) {
@@ -61,38 +60,14 @@ class InterfazApp extends StatelessWidget {
                         ],
                       );
                     });
-
-                // Navigator.push(context, MaterialPageRoute(
-                //   builder: (context) {
-                //     return GetTurn();
-                //   },
-                // ));
               },
               color: Colors.blue,
               textColor: Colors.white,
             ),
             text: 'Pide tu turno aquí!',
           ),
-          Button(
-            child: RaisedButton(
-              child: Text(
-                'Cancelar Turno',
-                style: TextStyle(fontSize: 18),
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return CancelTurn();
-                    },
-                  ),
-                );
-              },
-              color: Colors.blue,
-              textColor: Colors.white,
-            ),
-            text: 'Cancele su turno aquí!',
+          Divider(
+            color: Colors.black,
           ),
           Card(
             elevation: 5.0,
@@ -103,10 +78,35 @@ class InterfazApp extends StatelessWidget {
                 ListTile(
                   title: Text('Codigo del turno: 573893'),
                   subtitle: Text(
-                      'Dia: Miercoles\nHora: 15:30\nMotivo: Me apreté un huevo con la puerta'),
-                  leading: Icon(
-                    Icons.delete,
-                    color: Colors.red,
+                      'Dia: Miercoles\nHora: 15:30\nMotivo: Me apreté un huevo con el cierre del pantalon'),
+                  leading: FlatButton(
+                    child: Icon(
+                      Icons.delete,
+                      color: Colors.red,
+                    ),
+                    splashColor: Colors.red,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          child: AlertDialog(
+                            title: Text("Seguro que desea cancelar el turno?"),
+                            content: Text("Codigo de Turno: 1234"),
+                            actions: <Widget>[
+                              Divider(),
+                              FlatButton(
+                                onPressed: () => Navigator.of(context).pop(),
+                                child: Text("Cancelar"),
+                              ),
+                              FlatButton(
+                                onPressed: () => Navigator.of(context).pop(),
+                                child: Text("Aceptar"),
+                              )
+                            ],
+                          ));
+                    },
                   ),
                 )
               ],
@@ -115,7 +115,6 @@ class InterfazApp extends StatelessWidget {
         ],
       ),
     );
-    // );
   }
 }
 
