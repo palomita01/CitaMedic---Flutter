@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_citamedic/constants.dart';
+import 'package:proyecto_citamedic/input_page.dart';
+import 'interfaz_screen.dart';
+// import 'register.dart';
 
 class SignInScreen extends StatelessWidget {
   @override
@@ -34,10 +37,17 @@ class SignInScreen extends StatelessWidget {
                         "Inicia Sesión",
                         style: Theme.of(context).textTheme.display1,
                       ),
-                      Text(
-                        "Registrate",
-                        style: Theme.of(context).textTheme.button,
-                      ),
+                      RaisedButton(
+                        color: Colors.lightBlue,
+                        textColor: Colors.white,
+                        child: Text("Registrate"),
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => InputPage(),
+                          ),
+                        ),
+                      )
                     ],
                   ),
                   //agrego el icono con su tamaño y alineacion en conjunto con el formualario
@@ -121,11 +131,18 @@ class SignInScreen extends StatelessWidget {
                           padding: EdgeInsets.all(20),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: kPrimaryColor,
                           ),
-                          child: Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
+                          child: FloatingActionButton(
+                            child: Icon(Icons.arrow_forward),
+                            onPressed: () {
+                              print('Presionado');
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => InterfazApp(),
+                                ),
+                              );
+                            },
                           ),
                         )
                       ],

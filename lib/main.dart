@@ -10,9 +10,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Auth Screen 1',
       //defino los temas y colores a usar en conjunto con las fuentes
       theme: ThemeData(
+        appBarTheme: AppBarTheme(color: Colors.lightBlue),
         brightness: Brightness.light,
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: kBackgroundColor,

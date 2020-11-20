@@ -8,7 +8,7 @@
         },
         {
             "name": "proyecto_citamedic (Flutter)",
-            "program": "lib/interfaz_screen.dart",
+            "program": "lib/main.dart",
             "request": "launch",
             "type": "dart"
         }
