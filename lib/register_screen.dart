@@ -32,7 +32,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         children: <Widget>[
-          _crearInput(),
+          _crearNombre(),
           Divider(),
           _crearDNI(),
           Divider(),
@@ -50,7 +50,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  Widget _crearInput() {
+  Widget _crearNombre() {
     return TextField(
       autofocus: false,
       textCapitalization: TextCapitalization.words,
@@ -195,6 +195,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       title: Text('Nombre es $_nombre'),
       subtitle: Text('Email es $_email'),
       trailing: Text(opcionSeleccionada),
+      leading: Text('Contraseña es $_password'),
     );
   }
 }

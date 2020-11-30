@@ -7,9 +7,6 @@ class InterfazApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // debugShowCheckedModeBanner: false,
-      // home: Scaffold(
-
       appBar: AppBar(
         title: Text(
           'Eliga dentro de estas dos opciones',
@@ -26,40 +23,45 @@ class InterfazApp extends StatelessWidget {
               ),
               onPressed: () {
                 showDialog(
-                    context: context,
-                    barrierDismissible: true,
-                    builder: (context) {
-                      return AlertDialog(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0)),
-                        title: Text("Seleccione"),
-                        content: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            SizedBox(height: 25.0),
-                            Text("Elíja una opción"),
-                            // SizedBox(height: 25.0),
-                          ],
-                        ),
-                        actions: <Widget>[
-                          FlatButton(
-                            child: Text("Para mi"),
-                            onPressed: () => Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return GetTurn1();
-                            })),
-                          ),
-                          FlatButton(
-                              child: Text("Para alguien más"),
-                              onPressed: () =>
-                                  Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) {
-                                      return GetTurn();
-                                    },
-                                  ))),
+                  context: context,
+                  barrierDismissible: true,
+                  builder: (context) {
+                    return AlertDialog(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      title: Text("Seleccione"),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          SizedBox(height: 25.0),
+                          Text("Elíja una opción"),
+                          // SizedBox(height: 25.0),
                         ],
-                      );
-                    });
+                      ),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text("Para mi"),
+                          onPressed: () => Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return GetTurn1();
+                          })),
+                        ),
+                        FlatButton(
+                          child: Text("Para alguien más"),
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return GetTurn();
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
               color: Colors.blue,
               textColor: Colors.white,
@@ -72,47 +74,50 @@ class InterfazApp extends StatelessWidget {
           Card(
             elevation: 5.0,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0)),
+              borderRadius: BorderRadius.circular(15.0),
+            ),
             child: Column(
               children: <Widget>[
-                ListTile(
-                  title: Text('Codigo del turno: 573893'),
-                  subtitle: Text(
-                      'Dia: Miercoles\nHora: 15:30\nMotivo: Me apreté un huevo con el cierre del pantalon'),
-                  leading: FlatButton(
-                    child: Icon(
-                      Icons.delete,
-                      color: Colors.red,
-                    ),
-                    splashColor: Colors.red,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          child: AlertDialog(
-                            title: Text("Seguro que desea cancelar el turno?"),
-                            content: Text("Codigo de Turno: 1234"),
-                            actions: <Widget>[
-                              Divider(),
-                              FlatButton(
-                                onPressed: () => Navigator.of(context).pop(),
-                                child: Text("Cancelar"),
-                              ),
-                              FlatButton(
-                                onPressed: () => Navigator.of(context).pop(),
-                                child: Text("Aceptar"),
-                              )
-                            ],
-                          ));
-                    },
-                  ),
-                )
+                // obtenerDatos(),
+                createListTile(context),
               ],
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Widget createListTile(BuildContext context) {
+    return ListTile(
+      title: Text('Codigo del turno: 573893'),
+      subtitle: Text('Dia: \nHora: \nMotivo: '),
+      leading: IconButton(
+        icon: Icon(
+          Icons.delete,
+          color: Colors.red,
+        ),
+        splashColor: Colors.red,
+        onPressed: () {
+          showDialog(
+            context: context,
+            child: AlertDialog(
+              title: Text("Seguro que desea cancelar el turno?"),
+              content: Text("Codigo de Turno: 1234"),
+              actions: <Widget>[
+                Divider(),
+                FlatButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: Text("Cancelar"),
+                ),
+                FlatButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: Text("Aceptar"),
+                )
+              ],
+            ),
+          );
+        },
       ),
     );
   }

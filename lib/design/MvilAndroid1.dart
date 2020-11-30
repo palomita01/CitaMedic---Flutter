@@ -22,7 +22,7 @@ class MvilAndroid1 extends StatelessWidget {
                 SizedBox(
               width: 324.0,
               height: 76.0,
-              child: bglogin(),
+              child: BgLogin(),
             ),
           ),
           Transform.translate(

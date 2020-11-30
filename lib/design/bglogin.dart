@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 
-class bglogin extends StatelessWidget {
-  bglogin({
+class BgLogin extends StatelessWidget {
+  BgLogin({
     Key key,
   }) : super(key: key);
   @override

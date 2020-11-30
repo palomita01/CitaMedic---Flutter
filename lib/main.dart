@@ -19,10 +19,10 @@ class MyApp extends StatelessWidget {
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: kBackgroundColor,
         textTheme: TextTheme(
-          display1: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+          headline4: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
           button: TextStyle(color: kPrimaryColor),
-          headline:
-              TextStyle(color: Colors.white, fontWeight: FontWeight.normal),
+          headline5:
+              TextStyle(color: Colors.white, fontWeight: FontWeight.normal,),
         ),
         inputDecorationTheme: InputDecorationTheme(
           enabledBorder: UnderlineInputBorder(
@@ -67,7 +67,7 @@ class WelcomeScreen extends StatelessWidget {
                     children: [
                       TextSpan(
                           text: "Realiza tu consulta aquí",
-                          style: Theme.of(context).textTheme.display1),
+                          style: Theme.of(context).textTheme.headline4),
                     ],
                   ),
                 ),

@@ -12,7 +12,6 @@ class GetTurn extends StatelessWidget {
   final TextEditingController _controllerDeleg = TextEditingController();
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerTel = TextEditingController();
-  final TextEditingController _probador = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

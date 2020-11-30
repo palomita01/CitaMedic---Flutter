@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_citamedic/model/Producto2.dart';
 import 'model/Producto2.dart';
-import 'getturn.dart';
 
 void main() => runApp(GetTurn1());
 
