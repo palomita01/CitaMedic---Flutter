@@ -11,6 +11,7 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: <Widget>[
           //defino el fondo de pantalla
@@ -38,7 +39,7 @@ class SignInScreen extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         "Inicia Sesión",
-                        style: Theme.of(context).textTheme.display1,
+                        style: Theme.of(context).textTheme.headline4,
                       ),
                       RaisedButton(
                         color: Colors.lightBlue,
