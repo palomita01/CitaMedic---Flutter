@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Auth Screen 1',
+      title: 'CitaMedic',
       //defino los temas y colores a usar en conjunto con las fuentes
       theme: ThemeData(
         appBarTheme: AppBarTheme(color: Colors.lightBlue),
@@ -21,8 +21,10 @@ class MyApp extends StatelessWidget {
         textTheme: TextTheme(
           headline4: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
           button: TextStyle(color: kPrimaryColor),
-          headline5:
-              TextStyle(color: Colors.white, fontWeight: FontWeight.normal,),
+          headline5: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.normal,
+          ),
         ),
         inputDecorationTheme: InputDecorationTheme(
           enabledBorder: UnderlineInputBorder(
