@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_citamedic/constants.dart';
-import 'package:proyecto_citamedic/input_page.dart';
+import 'package:proyecto_citamedic/register_screen.dart';
 import 'interfaz_screen.dart';
 // import 'register.dart';
 
@@ -47,7 +47,7 @@ class SignInScreen extends StatelessWidget {
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => InputPage(),
+                            builder: (context) => RegisterScreen(),
                           ),
                         ),
                       )
@@ -105,75 +105,45 @@ class SignInScreen extends StatelessWidget {
                   ),
                   //en toda esta estructura incluyen los iconos y sus atributos
                   Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.blue.withOpacity(.5),
-                            ),
-                          ),
-                          child: Icon(
-                            Icons.android,
+
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
                             color: Colors.blue.withOpacity(.5),
                           ),
                         ),
-                        SizedBox(width: 20),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.blue.withOpacity(.5),
-                            ),
-                          ),
-                          child: Icon(
-                            Icons.chat,
+                        child: Icon(
+                          Icons.android,
+                          color: Colors.blue.withOpacity(.5),
+                        ),
+                      ),
+                      SizedBox(width: 20),
+                      Container(
+                        padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
                             color: Colors.blue.withOpacity(.5),
                           ),
                         ),
-                        Spacer(),
-                        Container(
-                          padding: EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: FloatingActionButton(
-                            child: Icon(Icons.arrow_forward),
-                            onPressed: () {
-                              if (_email == "" || _password == "") {
-                                showDialog(
-                                  context: context,
-                                  child: AlertDialog(
-                                    title: Text("Complete los formularios"),
-                                    content: Text("Completa los formularios"),
-                                    actions: <Widget>[
-                                      FlatButton(
-                                        onPressed: () =>
-                                            Navigator.of(context).pop(),
-                                        child: Text("Aceptar"),
-                                      )
-                                    ],
-                                  ),
-                                );
-                              } else {
-                                print('Presionado');
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => InterfazApp(),
-                                  ),
-                                );
-                              }
-                            },
-                          ),
-                        )
-                      ],
-                    ),
+                        child: Icon(
+                          Icons.chat,
+                          color: Colors.blue.withOpacity(.5),
+                        ),
+                      ),
+                      Spacer(),
+                      Container(
+                        padding: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                        ),
+                        child: createFloatingActionButton(context),
+                      )
+                    ],
                   ),
                 ],
               ),
@@ -183,4 +153,38 @@ class SignInScreen extends StatelessWidget {
       ),
     );
   }
+
+  //Crea el FloatingActionButton que lleva a la pantalla de interfaz
+  Widget createFloatingActionButton(BuildContext context) {
+    return FloatingActionButton(
+      child: Icon(Icons.arrow_forward),
+      onPressed: () {
+        // if (_email == "" || _password == "") {
+        if (false) {
+          showDialog(
+            context: context,
+            child: AlertDialog(
+              title: Text("Formulario", textAlign: TextAlign.center),
+              content: Text("Completa los campos con sus datos"),
+              actions: <Widget>[
+                FlatButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: Text("Aceptar"),
+                )
+              ],
+            ),
+          );
+        } else {
+          print('Presionado');
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => InterfazApp(),
+            ),
+          );
+        }
+      },
+    );
+  } // creatFloatingActionButton
+
 }

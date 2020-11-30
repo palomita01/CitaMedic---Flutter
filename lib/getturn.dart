@@ -12,6 +12,7 @@ class GetTurn extends StatelessWidget {
   final TextEditingController _controllerDeleg = TextEditingController();
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerTel = TextEditingController();
+  final TextEditingController _probador = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,121 +20,89 @@ class GetTurn extends StatelessWidget {
       appBar: AppBar(
         title: Text("Solicitá tu turno"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(50.0),
-        child: Column(
-          children: <Widget>[
-            // formularios y sus atributos
-            Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: TextField(
-                  controller: _controllerNyA,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    labelText: 'Nombre y Apellido',
-                    // suffixIcon: Icon(Icons.accessibility),
-                    icon: Icon(Icons.account_circle),
-                  ),
-                  keyboardType: TextInputType.text),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: TextField(
-                  controller: _controllerDNI,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    labelText: 'DNI',
-                    // suffixIcon: Icon(Icons.accessibility),
-                    icon: Icon(Icons.assignment_ind),
-                  ),
-                  keyboardType: TextInputType.text),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: TextField(
-                  controller: _controllerProv,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    labelText: 'Provincia',
-                    // suffixIcon: Icon(Icons.accessibility),
-                    icon: Icon(Icons.list),
-                  ),
-                  keyboardType: TextInputType.text),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: TextField(
-                  controller: _controllerDeleg,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    labelText: 'Delegacion',
-                    // suffixIcon: Icon(Icons.accessibility),
-                    icon: Icon(Icons.location_on),
-                  ),
-                  keyboardType: TextInputType.text),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: TextField(
-                  controller: _controllerEmail,
-                  decoration: InputDecoration(
-                    // esto es una decoracion
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    labelText: 'E-mail',
-                    // suffixIcon: Icon(Icons.accessibility),
-                    icon: Icon(Icons.alternate_email),
-                  ),
-                  keyboardType: TextInputType.text),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: TextField(
-                  controller: _controllerTel,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    labelText: 'Teléfono',
-                    // suffixIcon: Icon(Icons.accessibility),
-                    icon: Icon(Icons.phone_android),
-                  ),
-                  keyboardType: TextInputType.text),
-            ),
-            // me devuelve los datos que pido luego de presionar el boton
-            RaisedButton(
-                color: Colors.lightBlue,
-                textColor: Colors.white,
-                child: Text('Siguiente'),
-                onPressed: () {
-                  final String nya = _controllerNyA.text;
-                  final int dni = int.tryParse(_controllerDNI.text);
-                  final String prov = _controllerProv.text;
-                  final String deleg = _controllerDeleg.text;
-                  final dynamic email = _controllerEmail.text;
-                  final int tel = int.tryParse(_controllerTel.text);
+      body: ListView(
+        padding: const EdgeInsets.all(10.0),
+        children: <Widget>[
+          // formularios y sus atributos
+          //Textfield de Nombre y Apellido
+          createTextField("Nombre y Apellido", Icon(Icons.account_circle),
+              TextInputType.text, _controllerNyA),
+          //TextField de DNi
+          createTextField("DNI", Icon(Icons.assignment_ind),
+              TextInputType.number, _controllerDNI),
 
-                  final Producto productoNuevo =
-                      Producto(nya, dni, prov, deleg, email, tel);
+          //TextField de Provincia
+          createTextField("Provincia", Icon(Icons.list), TextInputType.text,
+              _controllerProv),
 
-                  print(productoNuevo);
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return GetTurn1();
-                    },
-                  ));
-                })
-          ],
+          //TextField de Delegación
+          createTextField("Delegación", Icon(Icons.location_on),
+              TextInputType.text, _controllerDeleg),
+
+          //TextField de Email
+          createTextField("E-mail", Icon(Icons.alternate_email),
+              TextInputType.emailAddress, _controllerEmail),
+
+          //TextField de Teléfono
+          createTextField("Teléfono", Icon(Icons.phone_android),
+              TextInputType.phone, _controllerTel),
+          // me devuelve los datos que pido luego de presionar el boton
+          createRaisedButton(context)
+        ],
+      ),
+    );
+  }
+
+  Widget createRaisedButton(BuildContext context) {
+    return RaisedButton(
+      color: Colors.lightBlue,
+      textColor: Colors.white,
+      child: Text('Siguiente'),
+      onPressed: () {
+        final String nya = _controllerNyA.text;
+        final int dni = int.tryParse(_controllerDNI.text);
+        final String prov = _controllerProv.text;
+        final String deleg = _controllerDeleg.text;
+        final dynamic email = _controllerEmail.text;
+        final int tel = int.tryParse(_controllerTel.text);
+
+        final Producto productoNuevo =
+            Producto(nya, dni, prov, deleg, email, tel);
+
+        print(productoNuevo);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return GetTurn1();
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  Widget createTextField(String label, Icon icon, TextInputType type,
+      TextEditingController controller) {
+    int length;
+    if (label == "DNI") {
+      length = 8;
+    } else {
+      length = null;
+    }
+    return Padding(
+      padding: const EdgeInsets.all(2.0),
+      child: TextField(
+        controller: controller,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          labelText: label,
+          icon: icon,
         ),
+        keyboardType: type,
+        maxLength: length,
       ),
     );
   }
