@@ -17,7 +17,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     "Mendoza",
     "Rio Negro",
     "Santa Fe",
-    "Tierra del Fuego"
+    "Tierra del Fuego",
+    "Continuar lista"
   ];
 
   String opcionSeleccionada = 'Provincia';
@@ -40,7 +41,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           Divider(),
           _crearPassword(),
           Divider(),
-          _crearFecha(context),
+          // _crearFecha(context),
           Divider(),
           _crearDropdown(),
           Divider(),
