@@ -1,4 +1,4 @@
-package com.example.proyecto_citamedic
+package com.citamedicteam.android.CitaMedic
 
 import io.flutter.embedding.android.FlutterActivity
 

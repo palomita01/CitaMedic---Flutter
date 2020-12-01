@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:240395230588:android:3deb00aa8c3d96c01658f9",
         "android_client_info": {
-          "package_name": "com.example.proyecto_citamedic"
+          "package_name": "com.citamedicteam.android.CitaMedic"
         }
       },
       "oauth_client": [
