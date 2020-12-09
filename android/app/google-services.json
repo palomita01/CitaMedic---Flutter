@@ -8,9 +8,38 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:240395230588:android:3deb00aa8c3d96c01658f9",
+        "mobilesdk_app_id": "1:240395230588:android:804a40f2505d41bc1658f9",
         "android_client_info": {
           "package_name": "com.citamedicteam.android.CitaMedic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "240395230588-0968qoeesl4sob2d4kfpl64vqv35060f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvdpaViy567vG_yi0BIfGnLaLS4YwZqzg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "240395230588-0968qoeesl4sob2d4kfpl64vqv35060f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240395230588:android:1c1605502aff8c7d1658f9",
+        "android_client_info": {
+          "package_name": "com.example.proyecto_citamedic"
         }
       },
       "oauth_client": [
