@@ -1,29 +1,60 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'model/users.dart';
 
 class RegisterScreen extends StatefulWidget {
+  final Usuario usuario;
+  RegisterScreen(this.usuario);
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
 
+final userReference = FirebaseDatabase.instance.reference().child('usuario');
+
 class _RegisterScreenState extends State<RegisterScreen> {
-  String _nombre;
-  String _email = '';
-  String _password = '';
-  String _fecha = "";
+  List<Usuario> items;
+  TextEditingController _dniController;
+  TextEditingController _nameController;
+  TextEditingController _emailController;
+  TextEditingController _passwordController;
+
+  void initState() {
+    _nameController = new TextEditingController(text: widget.usuario.nombre);
+    _emailController = new TextEditingController(text: widget.usuario.email);
+    _dniController = new TextEditingController(text: widget.usuario.dni);
+    _passwordController =
+        new TextEditingController(text: widget.usuario.contrasena);
+  }
 
   List<String> _provincias = [
     "Provincia",
-    'Neuquen',
+    "Buenos Aires",
+    "Catamarca",
+    "Chaco",
+    "Córdoba",
+    "Corrientes",
+    "Entre Ríos",
+    "Formosa",
+    "Jujuy",
+    "La Pampa",
+    "La Rioja",
     "Mendoza",
+    "Misiones",
+    "Neuquén",
     "Rio Negro",
+    "Salta",
+    "San Juan",
+    "San Luis",
+    "Santa Cruz",
     "Santa Fe",
+    'Santiago del Estero',
     "Tierra del Fuego",
-    "Continuar lista"
+    "Tucumán",
+    "Tierra del Fuego",
   ];
 
-  String opcionSeleccionada = 'Provincia';
+  String _provinciaSeleccionada = 'Provincia';
 
-  TextEditingController _inputFieldDateController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,11 +72,51 @@ class _RegisterScreenState extends State<RegisterScreen> {
           Divider(),
           _crearPassword(),
           Divider(),
-          // _crearFecha(context),
-          Divider(),
           _crearDropdown(),
           Divider(),
-          _crearPersona(),
+          Padding(
+            padding: EdgeInsets.only(top: 20),
+          ),
+          // _crearPersona(),
+          FlatButton(
+            child: Text('Registrarse'),
+            onPressed: () {
+              if (widget.usuario.id != null || widget.usuario.dni != null) {
+                print('Presionado 1');
+                userReference.child(widget.usuario.dni).set(
+                  {
+                    'nombre': _nameController.text,
+                    'contraseña': _passwordController.text,
+                    'provincia': _provinciaSeleccionada,
+                    'email:': _emailController.text,
+                    'dni': _dniController.text,
+                  },
+                ).then(
+                  (_) {
+                    Navigator.pop(context);
+                  },
+                );
+              } else {
+                userReference.push().set(
+                  {
+                    'nombre': _nameController.text,
+                    'contraseña': _passwordController.text,
+                    'provincia': _provinciaSeleccionada,
+                    'email': _emailController.text,
+                    'dni': _dniController.text,
+                  },
+                ).then(
+                  (_) {
+                    Navigator.pop(context);
+                  },
+                );
+              }
+            },
+          ),
+          FlatButton(
+            child: Text('Cancelar'),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
         ],
       ),
     );
@@ -53,6 +124,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   Widget _crearNombre() {
     return TextField(
+      controller: _nameController,
       autofocus: false,
       textCapitalization: TextCapitalization.words,
       decoration: InputDecoration(
@@ -64,18 +136,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
         hintText: 'Ejemplo Pepito Muñoz',
         icon: Icon(Icons.account_circle),
       ),
-      onChanged: (valor) {
-        setState(() {
-          _nombre = valor;
-        });
-      },
     );
   }
 
   //
   Widget _crearEmail() {
     return TextField(
+      controller: _emailController,
       keyboardType: TextInputType.emailAddress,
+      textCapitalization: TextCapitalization.none,
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20.0),
@@ -84,16 +153,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
         labelText: 'Email',
         icon: Icon(Icons.email),
       ),
-      onChanged: (valor) {
-        setState(() {
-          _email = valor;
-        });
-      },
     );
   }
 
   Widget _crearDNI() {
     return TextField(
+      controller: _dniController,
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
@@ -106,6 +171,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   Widget _crearPassword() {
     return TextField(
+      controller: _passwordController,
       obscureText: true,
       decoration: InputDecoration(
         border: OutlineInputBorder(
@@ -115,14 +181,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
         labelText: 'Password',
         icon: Icon(Icons.lock),
       ),
-      onChanged: (valor) {
-        setState(() {
-          _password = valor;
-        });
-      },
     );
   }
 
+/*
   Widget _crearFecha(BuildContext context) {
     return TextField(
       controller: _inputFieldDateController,
@@ -158,6 +220,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       });
     }
   }
+*/
 
   List<DropdownMenuItem<String>> getOpcionesDropdown() {
     List<DropdownMenuItem<String>> lista = new List();
@@ -178,25 +241,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
         SizedBox(width: 30.0),
         Expanded(
           child: DropdownButton(
-            value: opcionSeleccionada,
+            value: _provinciaSeleccionada,
             items: getOpcionesDropdown(),
             onChanged: (opt) {
               setState(() {
-                opcionSeleccionada = opt;
+                _provinciaSeleccionada = opt;
               });
             },
           ),
         )
       ],
-    );
-  }
-
-  Widget _crearPersona() {
-    return ListTile(
-      title: Text('Nombre es $_nombre'),
-      subtitle: Text('Email es $_email'),
-      trailing: Text(opcionSeleccionada),
-      leading: Text('Contraseña es $_password'),
     );
   }
 }
