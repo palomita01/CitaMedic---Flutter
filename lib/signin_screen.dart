@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_citamedic/constants.dart';
-import 'package:proyecto_citamedic/register_screen.dart';
+import 'package:proyecto_citamedic/list_turns.dart';
+import 'register_screen.dart';
 import 'interfaz_screen.dart';
+import 'model/users.dart';
+import 'list_turns.dart';
 // import 'register.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -48,7 +51,8 @@ class SignInScreen extends StatelessWidget {
                         onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => RegisterScreen(),
+                            builder: (context) =>
+                                RegisterScreen(Usuario(null,'', '', '', '', '')),
                           ),
                         ),
                       )
@@ -180,7 +184,7 @@ class SignInScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => InterfazApp(),
+              builder: (context) => ListViewTurn(),
             ),
           );
         }
