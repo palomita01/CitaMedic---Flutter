@@ -38,7 +38,25 @@ class _ListViewTurnState extends State<ListViewTurn> {
       appBar: AppBar(
         title: Text('Turnos'),
       ),
-      body: Center(
+      body: body(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.lightBlue,
+        onPressed: () => _createNewTurn(context),
+      ),
+    );
+  }
+
+  Widget body() {
+    if (items.length == 0) {
+      return ListTile(
+          title: Text('No tienes turno pendientes'),
+          subtitle: Text('Solicita uno pulsando el botón inferior'));
+    } else {
+      return Center(
         child: ListView.builder(
           itemCount: items.length,
           padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
@@ -83,16 +101,8 @@ class _ListViewTurnState extends State<ListViewTurn> {
             );
           },
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
-        backgroundColor: Colors.lightBlue,
-        onPressed: () => _createNewTurn(context),
-      ),
-    );
+      );
+    }
   }
 
   void _onTurnAdded(Event event) {

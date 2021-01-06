@@ -79,6 +79,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           // _crearPersona(),
           FlatButton(
+            color: Colors.lightBlue,
+            textColor: Colors.white,
             child: Text('Registrarse'),
             onPressed: () {
               if (widget.usuario.id != null || widget.usuario.dni != null) {
@@ -115,6 +117,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           FlatButton(
             child: Text('Cancelar'),
+            color: Colors.lightBlue,
+            textColor: Colors.white,
             onPressed: () => Navigator.of(context).pop(),
           ),
         ],

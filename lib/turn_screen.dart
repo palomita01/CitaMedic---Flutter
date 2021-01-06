@@ -32,97 +32,80 @@ class _TurnScreenState extends State<TurnScreen> {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
-        title: Text("Editor"),
+        title: Text("Solicitar Turno"),
       ),
-      body: Container(
-        height: 570,
-        padding: EdgeInsets.all(70.0),
-        child: Card(
-          child: Center(
-            child: Column(
-              children: <Widget>[
-                TextField(
-                  controller: _motivoController,
-                  style: TextStyle(fontSize: 12.0),
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.person),
-                    labelText: 'Motivo',
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 10),
-                ),
-                TextField(
-                  controller: _diaController,
-                  style: TextStyle(fontSize: 12.0),
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.list),
-                    labelText: 'Dia',
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 10),
-                ),
-                TextField(
-                  controller: _horaController,
-                  style: TextStyle(fontSize: 12.0),
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.access_time),
-                    labelText: 'Hora',
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 10),
-                ),
-                TextField(
-                  controller: _comentarioController,
-                  style: TextStyle(fontSize: 12.0),
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.message),
-                    labelText: 'Comentario',
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 10),
-                ),
-                FlatButton(
-                  child: (widget.turno.codigo != null)
-                      ? Text('Actualizar')
-                      : Text('Agregar'),
-                  onPressed: () {
-                    if (widget.turno.codigo != null) {
-                      turnReference.child(widget.turno.codigo).set(
-                        {
-                          'motivo': _motivoController.text,
-                          'hora': _horaController.text,
-                          'dia': _diaController.text,
-                          'comentarios': _comentarioController.text,
-                        },
-                      ).then(
-                        (_) {
-                          Navigator.pop(context);
-                        },
-                      );
-                    } else {
-                      turnReference.push().set(
-                        {
-                          'motivo': _motivoController.text,
-                          'hora': _horaController.text,
-                          'dia': _diaController.text,
-                          'comentarios': _comentarioController.text,
-                        },
-                      ).then(
-                        (_) {
-                          Navigator.pop(context);
-                        },
-                      );
-                    }
-                  },
-                ),
-              ],
+      body: ListView(
+        children: <Widget>[
+          createTextField('Motivo', Icon(Icons.person), TextInputType.text,
+              _motivoController),
+          Divider(),
+          createTextField(
+              'Dia', Icon(Icons.list), TextInputType.text, _diaController),
+          Divider(),
+          createTextField('Hora', Icon(Icons.access_time), TextInputType.text,
+              _horaController),
+          Divider(),
+          createTextField('Comentarios', Icon(Icons.message),
+              TextInputType.text, _comentarioController),
+          Divider(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FlatButton(
+              color: Colors.lightBlue,
+              textColor: Colors.white,
+              child: (widget.turno.codigo != null)
+                  ? Text('Actualizar')
+                  : Text('Agregar'),
+              onPressed: () {
+                if (widget.turno.codigo != null) {
+                  turnReference.child(widget.turno.codigo).set(
+                    {
+                      'motivo': _motivoController.text,
+                      'hora': _horaController.text,
+                      'dia': _diaController.text,
+                      'comentarios': _comentarioController.text,
+                    },
+                  ).then(
+                    (_) {
+                      Navigator.pop(context);
+                    },
+                  );
+                } else {
+                  turnReference.push().set(
+                    {
+                      'motivo': _motivoController.text,
+                      'hora': _horaController.text,
+                      'dia': _diaController.text,
+                      'comentarios': _comentarioController.text,
+                    },
+                  ).then(
+                    (_) {
+                      Navigator.pop(context);
+                    },
+                  );
+                }
+              },
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget createTextField(String label, Icon icon, TextInputType type,
+      TextEditingController controller) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+      child: TextField(
+        controller: controller,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          labelText: label,
+          icon: icon,
         ),
+        keyboardType: type,
       ),
     );
   }
