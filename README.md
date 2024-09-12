@@ -1,3 +1,3 @@
 # proyecto_citamedic
 
-En esta versión de la app, avanzamos haciendo los formularios.
+Esta app se relaciona con los turnos médicos para personas(Personas de riesgos) que no puedan salir de su casa.
